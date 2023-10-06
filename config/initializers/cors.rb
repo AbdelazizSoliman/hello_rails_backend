@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Be sure to restart your server when you modify this file.
 
 # Avoid CORS issues when API is called from the frontend app.
@@ -15,13 +17,13 @@
 #   end
 # end
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
-    allow do
-      origins 'http://localhost:3000' # Add your React frontend's domain here
-  
-      resource '*',
-        headers: :any,
-        methods: [:get, :post, :put, :patch, :delete, :options, :head],
-        expose: ['access-token', 'expiry', 'token-type', 'uid', 'client'],
-        max_age: 0
-    end
+  allow do
+    origins 'http://localhost:3000' # Add your React frontend's domain here
+
+    resource '*',
+             headers: :any,
+             methods: %i[get post put patch delete options head],
+             expose: %w[access-token expiry token-type uid client],
+             max_age: 0
+  end
 end
